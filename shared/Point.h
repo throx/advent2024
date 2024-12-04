@@ -216,7 +216,7 @@ namespace P2
         }
     );
 
-    int Cross(const Point2& p1, const Point2& p2) {
+    __int64 Cross(const Point2& p1, const Point2& p2) {
         return p1[0] * p2[1] - p1[1] * p2[0];
     }
 }
