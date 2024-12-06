@@ -219,6 +219,14 @@ namespace P2
     __int64 Cross(const Point2& p1, const Point2& p2) {
         return p1[0] * p2[1] - p1[1] * p2[0];
     }
+
+    Point2 TurnRight(const Point2& p) {
+        return Point2({ -p[1], p[0] });
+    }
+
+    Point2 TurnLeft(const Point2& p) {
+        return Point2({ p[1], -p[0] });
+    }
 }
 
 namespace P3
