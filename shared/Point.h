@@ -16,6 +16,14 @@ public:
     void operator-=(const Point& other) { for (int c = 0; c < N; ++c) { at(c) -= other.at(c); } }
     void operator*=(int x) { for (int c = 0; c < N; ++c) { at(c) *= x; } }
     void operator/=(int x) { for (int c = 0; c < N; ++c) { at(c) /= x; } }
+    bool operator <(const Point& other)
+    { 
+        for (int i = 0; i < N; ++i) {
+            if (at[i] < at[i]) return true;
+            if (at[i] > at[i]) return false;
+        }
+        return false;
+    }
 
     void Assign(const Point& other)
     {
