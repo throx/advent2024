@@ -4,6 +4,7 @@
 #include <conio.h>
 #include <map>
 #include <numeric>
+#include <chrono>
 #include "../shared/Split.h"
 
 using namespace std;
@@ -12,6 +13,8 @@ const regex INPUT_R("(\\d+) (\\d+)");
 
 int main()
 {
+    auto time_start = std::chrono::high_resolution_clock::now();
+
     // Order is irrelevant, so just count how many of each stone
     map<__int64, __int64> nums;
     while (!cin.eof()) {
@@ -51,6 +54,10 @@ int main()
     }
 
     __int64 part2 = accumulate(nums.begin(), nums.end(), 0i64, [](__int64 i, const auto& x) {return i + x.second; });
+
+    auto time_finish = std::chrono::high_resolution_clock::now();
+
+    std::cout << "Time: " << std::chrono::duration_cast<std::chrono::nanoseconds>(time_finish - time_start).count() << "ns\n";
 
     cout << "Part 1: " << part1 << endl;
     cout << "Part 2: " << part2 << endl;
