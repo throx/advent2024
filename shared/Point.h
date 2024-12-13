@@ -14,8 +14,8 @@ public:
     const Point& operator=(const Point& other) { Assign(other); return *this; }
     void operator+=(const Point& other) { for (int c = 0; c < N; ++c) { at(c) += other.at(c); } }
     void operator-=(const Point& other) { for (int c = 0; c < N; ++c) { at(c) -= other.at(c); } }
-    void operator*=(int x) { for (int c = 0; c < N; ++c) { at(c) *= x; } }
-    void operator/=(int x) { for (int c = 0; c < N; ++c) { at(c) /= x; } }
+    void operator*=(__int64 x) { for (int c = 0; c < N; ++c) { at(c) *= x; } }
+    void operator/=(__int64 x) { for (int c = 0; c < N; ++c) { at(c) /= x; } }
     bool operator <(const Point& other)
     { 
         for (int i = 0; i < N; ++i) {
@@ -81,8 +81,8 @@ public:
 template<int N> Point<N> operator+ (const Point<N>& a, const Point<N>& b) { Point<N> p(a); p += b; return p; }
 template<int N> Point<N> operator- (const Point<N>& a, const Point<N>& b) { Point<N> p(a); p -= b; return p; }
 template<int N> Point<N> operator- (const Point<N>& a) { Point<N> p; p -= a; return p; }
-template<int N> Point<N> operator* (const Point<N>& a, int x) { Point<N> p(a); p *= x; return p; }
-template<int N> Point<N> operator/ (const Point<N>& a, int x) { Point<N> p(a); p /= x; return p; }
+template<int N> Point<N> operator* (const Point<N>& a, __int64 x) { Point<N> p(a); p *= x; return p; }
+template<int N> Point<N> operator/ (const Point<N>& a, __int64 x) { Point<N> p(a); p /= x; return p; }
 template<int N> std::ostream& operator<< (std::ostream& os, const Point<N>& p)
 {
     os << "(" << p.at(0);
