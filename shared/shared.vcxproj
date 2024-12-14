@@ -152,7 +152,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BitStream.h" />
-    <ClInclude Include="Console.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="shared.h" />

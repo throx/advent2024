@@ -44,7 +44,7 @@ void Split(const std::string& s, _F fn, char tok = ',')
     }
 }
 
-std::vector<std::string> Split(const std::string& s, char tok = ',')
+static inline std::vector<std::string> Split(const std::string& s, char tok = ',')
 {
     std::vector<std::string> r;
     Split(s, [&](std::string&& x) {
@@ -54,7 +54,7 @@ std::vector<std::string> Split(const std::string& s, char tok = ',')
 }
 
 
-std::vector<int> SplitInts(const std::string& s, char tok = ',')
+static inline std::vector<int> SplitInts(const std::string& s, char tok = ',')
 {
     std::vector<int> r;
     Split(s, [&](std::string&& x) {
@@ -66,7 +66,7 @@ std::vector<int> SplitInts(const std::string& s, char tok = ',')
 }
 
 
-std::vector<__int64> SplitInt64s(const std::string& s, char tok = ',')
+static inline std::vector<__int64> SplitInt64s(const std::string& s, char tok = ',')
 {
     std::vector<__int64> r;
     Split(s, [&](std::string&& x) {
@@ -92,7 +92,7 @@ void Split(const std::string& s, _F fn, const std::string& tok = "->")
     fn(trim(buf));
 }
 
-std::vector<std::string> Split(const std::string& s, const std::string& tok)
+static inline std::vector<std::string> Split(const std::string& s, const std::string& tok)
 {
     std::vector<std::string> r;
     Split(s, [&](std::string&& x) {

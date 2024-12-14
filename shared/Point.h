@@ -184,22 +184,22 @@ typedef Point<4> Point4;
 
 namespace P2
 {
-    const Point2 N({ 0, -1 });
-    const Point2 S({ 0, 1 });
-    const Point2 W({ -1, 0 });
-    const Point2 E({ 1, 0 });
+    static const Point2 N({ 0, -1 });
+    static const Point2 S({ 0, 1 });
+    static const Point2 W({ -1, 0 });
+    static const Point2 E({ 1, 0 });
 
-    const Point2 U({ 0, -1 });
-    const Point2 D({ 0, 1 });
-    const Point2 L({ -1, 0 });
-    const Point2 R({ 1, 0 });
+    static const Point2 U({ 0, -1 });
+    static const Point2 D({ 0, 1 });
+    static const Point2 L({ -1, 0 });
+    static const Point2 R({ 1, 0 });
 
-    const Point2 NE = N + E;
-    const Point2 SE = S + E;
-    const Point2 NW = N + W;
-    const Point2 SW = S + W;
+    static const Point2 NE = N + E;
+    static const Point2 SE = S + E;
+    static const Point2 NW = N + W;
+    static const Point2 SW = S + W;
 
-    std::map<char, Point2> DIRS(
+    static std::map<char, Point2> DIRS(
         {
             {'N', N},
             {'S', S},
@@ -224,26 +224,26 @@ namespace P2
         }
     );
 
-    __int64 Cross(const Point2& p1, const Point2& p2) {
+    static inline __int64 Cross(const Point2& p1, const Point2& p2) {
         return p1[0] * p2[1] - p1[1] * p2[0];
     }
 
-    Point2 TurnRight(const Point2& p) {
+    static inline Point2 TurnRight(const Point2& p) {
         return Point2({ -p[1], p[0] });
     }
 
-    Point2 TurnLeft(const Point2& p) {
+    static inline Point2 TurnLeft(const Point2& p) {
         return Point2({ p[1], -p[0] });
     }
 }
 
 namespace P3
 {
-    const Point3 X({ 1, 0, 0 });
-    const Point3 Y({ 0, 1, 0 });
-    const Point3 Z({ 0, 0, 1 });
+    static const Point3 X({ 1, 0, 0 });
+    static const Point3 Y({ 0, 1, 0 });
+    static const Point3 Z({ 0, 0, 1 });
 
-    Point3 Cross(const Point3& p1, const Point3& p2) {
+    static inline Point3 Cross(const Point3& p1, const Point3& p2) {
         return Point3({ p1[1] * p2[2] - p1[2] * p2[1], p1[2] * p2[0] - p1[0] * p2[2], p1[0] * p2[1] - p1[1] * p2[2] });
     }
 }
