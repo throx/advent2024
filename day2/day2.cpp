@@ -5,7 +5,7 @@
 #ifdef _WIN32
   #include <conio.h>
 #else
-static inline void getch() {}
+static inline void _getch() {}
 #endif
 #include <sstream>
 
@@ -100,4 +100,5 @@ int main()
 
     cout << "Press a key to continue" << endl;
     _getch();
+    return 0;
 }
