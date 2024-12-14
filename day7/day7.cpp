@@ -9,6 +9,7 @@ static inline void getch() {}
 #endif
 #include "../shared/Split.h"
 #include <bitset>
+#include <cmath>
 
 using namespace std;
 
