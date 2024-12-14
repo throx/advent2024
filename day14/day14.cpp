@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include <iostream>
 #include <string>
 #include <regex>
@@ -15,10 +16,10 @@ struct Robot {
 };
 
 // https://stackoverflow.com/questions/14997165/fastest-way-to-get-a-positive-modulo-in-c-c
-__int64 euclidian_mod(__int64 a, __int64 b) {
+int64_t euclidian_mod(int64_t a, int64_t b) {
     if (b == 0) throw "BOOM";
     if (b == -1) return 0; // This test needed to prevent UB of `INT_MIN % -1`.
-    __int64 m = a % b;
+    int64_t m = a % b;
     if (m < 0) {
         // m += (b < 0) ? -b : b; // Avoid this form: it is UB when b == INT_MIN
         m = (b < 0) ? m - b : m + b;
@@ -26,10 +27,10 @@ __int64 euclidian_mod(__int64 a, __int64 b) {
     return m;
 }
 
-__int64 xsize;
-__int64 ysize;
+int64_t xsize;
+int64_t ysize;
 
-void move(vector<Robot>& new_robots, __int64 num_rounds) {
+void move(vector<Robot>& new_robots, int64_t num_rounds) {
     for (auto& r : new_robots) {
         r.p[0] = euclidian_mod(r.p[0] + r.v[0] * num_rounds, xsize);
         r.p[1] = euclidian_mod(r.p[1] + r.v[1] * num_rounds, ysize);
@@ -67,15 +68,15 @@ int main()
     auto new_robots = robots;
     move(new_robots, 100);
 
-    __int64 xhalf = xsize / 2;
-    __int64 yhalf = ysize / 2;
+    int64_t xhalf = xsize / 2;
+    int64_t yhalf = ysize / 2;
 
-    __int64 q1 = count_if(new_robots.begin(), new_robots.end(), [&](const auto& r) { return r.p[0] < xhalf && r.p[1] < yhalf; });
-    __int64 q2 = count_if(new_robots.begin(), new_robots.end(), [&](const auto& r) { return r.p[0] < xhalf && r.p[1] > yhalf; });
-    __int64 q3 = count_if(new_robots.begin(), new_robots.end(), [&](const auto& r) { return r.p[0] > xhalf && r.p[1] < yhalf; });
-    __int64 q4 = count_if(new_robots.begin(), new_robots.end(), [&](const auto& r) { return r.p[0] > xhalf && r.p[1] > yhalf; });
+    int64_t q1 = count_if(new_robots.begin(), new_robots.end(), [&](const auto& r) { return r.p[0] < xhalf && r.p[1] < yhalf; });
+    int64_t q2 = count_if(new_robots.begin(), new_robots.end(), [&](const auto& r) { return r.p[0] < xhalf && r.p[1] > yhalf; });
+    int64_t q3 = count_if(new_robots.begin(), new_robots.end(), [&](const auto& r) { return r.p[0] > xhalf && r.p[1] < yhalf; });
+    int64_t q4 = count_if(new_robots.begin(), new_robots.end(), [&](const auto& r) { return r.p[0] > xhalf && r.p[1] > yhalf; });
 
-    __int64 part1 = q1 * q2 * q3 * q4;
+    int64_t part1 = q1 * q2 * q3 * q4;
     int part2 = -1;
 
     new_robots = robots;
@@ -89,11 +90,11 @@ int main()
         // Count how many robots are "1" from any other robot
         int close = count_if(new_robots.begin(), new_robots.end(), [&](const Robot& r)
             {
-                __int64 m = INT64_MAX;
+                int64_t m = INT64_MAX;
                 for (const auto& r2 : new_robots) {
                     Point2 diff = r2.p - r.p;
                     if (diff != zero) {
-                        __int64 mm = max(llabs(diff[0]), llabs(diff[1]));
+                        int64_t mm = max(llabs(diff[0]), llabs(diff[1]));
                         if (mm < m) {
                             m = mm;
                         }

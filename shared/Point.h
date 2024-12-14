@@ -1,26 +1,27 @@
 #pragma once
+#include <stdint.h>
 #include <vector>
 #include <algorithm>
 #include <iostream>
 #include <set>
 #include <map>
 
-template<int N> class Point : public std::vector<__int64> {
+template<int N> class Point : public std::vector<int64_t> {
 public:
-    Point(std::initializer_list<__int64> il) : std::vector<__int64>(il) { resize(N); }
+    Point(std::initializer_list<int64_t> il) : std::vector<int64_t>(il) { resize(N); }
     Point() { resize(N); }
     Point(const Point& other) { resize(N); Assign(other); }
 
     const Point& operator=(const Point& other) { Assign(other); return *this; }
     void operator+=(const Point& other) { for (int c = 0; c < N; ++c) { at(c) += other.at(c); } }
     void operator-=(const Point& other) { for (int c = 0; c < N; ++c) { at(c) -= other.at(c); } }
-    void operator*=(__int64 x) { for (int c = 0; c < N; ++c) { at(c) *= x; } }
-    void operator/=(__int64 x) { for (int c = 0; c < N; ++c) { at(c) /= x; } }
-    bool operator <(const Point& other)
+    void operator*=(int64_t x) { for (int c = 0; c < N; ++c) { at(c) *= x; } }
+    void operator/=(int64_t x) { for (int c = 0; c < N; ++c) { at(c) /= x; } }
+    bool operator <(const Point& other) const
     { 
         for (int i = 0; i < N; ++i) {
-            if (at[i] < at[i]) return true;
-            if (at[i] > at[i]) return false;
+            if (at(i) < at(i)) return true;
+            if (at(i) > at(i)) return false;
         }
         return false;
     }
@@ -32,7 +33,7 @@ public:
         }
     }
 
-    Point Clamp(__int64 c) const {
+    Point Clamp(int64_t c) const {
         Point clamped;
         for (int i = 0; i < N; ++i) {
             clamped.at(i) = std::min(std::max(at(i), -c), c);
@@ -47,7 +48,7 @@ public:
         for (auto& x : d) x = -1;
 
         while (true) {
-            if (!std::all_of(d.begin(), d.end(), [](__int64 a) {return a == 0; })) {
+            if (!std::all_of(d.begin(), d.end(), [](int64_t a) {return a == 0; })) {
                 fn((*this) + d);
             }
             
@@ -81,8 +82,8 @@ public:
 template<int N> Point<N> operator+ (const Point<N>& a, const Point<N>& b) { Point<N> p(a); p += b; return p; }
 template<int N> Point<N> operator- (const Point<N>& a, const Point<N>& b) { Point<N> p(a); p -= b; return p; }
 template<int N> Point<N> operator- (const Point<N>& a) { Point<N> p; p -= a; return p; }
-template<int N> Point<N> operator* (const Point<N>& a, __int64 x) { Point<N> p(a); p *= x; return p; }
-template<int N> Point<N> operator/ (const Point<N>& a, __int64 x) { Point<N> p(a); p /= x; return p; }
+template<int N> Point<N> operator* (const Point<N>& a, int64_t x) { Point<N> p(a); p *= x; return p; }
+template<int N> Point<N> operator/ (const Point<N>& a, int64_t x) { Point<N> p(a); p /= x; return p; }
 template<int N> std::ostream& operator<< (std::ostream& os, const Point<N>& p)
 {
     os << "(" << p.at(0);
@@ -145,8 +146,8 @@ template<int N> std::istream& operator>> (std::istream& is, Point<N>& p)
 
 // Manhattan distance
 template<int N>
-__int64 Dist(const Point<N>& p1, const Point<N>& p2) {
-    __int64 sum = 0;
+int64_t Dist(const Point<N>& p1, const Point<N>& p2) {
+    int64_t sum = 0;
     for (int i = 0; i < N; ++i) {
         sum += abs(p1[i] - p2[i]);
     }
@@ -224,7 +225,7 @@ namespace P2
         }
     );
 
-    static inline __int64 Cross(const Point2& p1, const Point2& p2) {
+    static inline int64_t Cross(const Point2& p1, const Point2& p2) {
         return p1[0] * p2[1] - p1[1] * p2[0];
     }
 

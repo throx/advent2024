@@ -1,5 +1,5 @@
 #pragma once
-
+#include <stdint.h>
 #include <vector>
 #include <string>
 #include <sstream>
@@ -66,9 +66,9 @@ static inline std::vector<int> SplitInts(const std::string& s, char tok = ',')
 }
 
 
-static inline std::vector<__int64> SplitInt64s(const std::string& s, char tok = ',')
+static inline std::vector<int64_t> SplitInt64s(const std::string& s, char tok = ',')
 {
-    std::vector<__int64> r;
+    std::vector<int64_t> r;
     Split(s, [&](std::string&& x) {
         if (!x.empty()) {
             r.push_back(stoll(x));

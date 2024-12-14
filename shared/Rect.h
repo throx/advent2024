@@ -1,4 +1,5 @@
 #pragma once
+#include <stdint.h>
 #include <algorithm>
 #include "Point.h"
 
@@ -78,9 +79,9 @@ public:
         return m_end - m_start;
     }
 
-    __int64 Size() const
+    int64_t Size() const
     {
-        __int64 area = 1;
+        int64_t area = 1;
         for (int i = 0; i < N; ++i) {
             area *= (m_end[i] - m_start[i]);
         }
@@ -143,9 +144,9 @@ public:
         return ret;
     }
 
-    __int64 BoundSize(const Rect<N>& other) const
+    int64_t BoundSize(const Rect<N>& other) const
     {
-        __int64 area = 1;
+        int64_t area = 1;
         for (int i = 0; i < N; ++i) {
             area *= (std::max(m_end[i], other.m_end[i]) - std::min(m_start[i], other.m_start[i]));
         }
@@ -194,7 +195,7 @@ Rect<N> Bound(const Rect<N>& a, const Rect<N>& b)
 }
 
 template<int N>
-__int64 BoundSize(const Rect<N>& a, const Rect<N>& b)
+int64_t BoundSize(const Rect<N>& a, const Rect<N>& b)
 {
     return a.BoundSize(b);
 }

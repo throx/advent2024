@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include <iostream>
 #include <string>
 #include <regex>
@@ -11,9 +12,9 @@ const regex INPUT_R("(\\d+): (.*)");
 
 const char OPS[] = "+*|";
 
-bool test(__int64 ans, vector<__int64> vals, vector<char> ops)
+bool test(int64_t ans, vector<int64_t> vals, vector<char> ops)
 {
-    __int64 acc = vals[0];
+    int64_t acc = vals[0];
     for (int i = 0; i < ops.size(); ++i) {
         // Optimisation, because no operations decrease value of acc
         if (acc > ans) {
@@ -38,8 +39,8 @@ bool test(__int64 ans, vector<__int64> vals, vector<char> ops)
 
 int main()
 {
-    vector<__int64> answer;
-    vector<vector<__int64>> values;
+    vector<int64_t> answer;
+    vector<vector<int64_t>> values;
 
     string s;
     while (getline(cin, s)) {
@@ -50,15 +51,15 @@ int main()
         }
     }
 
-    __int64 part1 = 0;
+    int64_t part1 = 0;
 
     for (int i = 0; i < answer.size(); ++i) {
         vector<char> ops;
-        __int64 n = values[i].size() - 1;
+        int64_t n = values[i].size() - 1;
         ops.resize(n);
         bool ok = false;
-        for (__int64 combo = 0; combo < powl(2, n); ++combo) {
-            __int64 c = combo;
+        for (int64_t combo = 0; combo < powl(2, (long double)n); ++combo) {
+            int64_t c = combo;
             for (int x = 0; x < n; ++x) {
                 ops[x] = OPS[c % 2];
                 c /= 2;
@@ -75,15 +76,15 @@ int main()
         }
     }
 
-    __int64 part2 = 0;
+    int64_t part2 = 0;
 
     for (int i = 0; i < answer.size(); ++i) {
         vector<char> ops;
-        __int64 n = values[i].size() - 1;
+        int64_t n = values[i].size() - 1;
         ops.resize(n);
         bool ok = false;
-        for (__int64 combo = 0; combo < powl(3, n); ++combo) {
-            __int64 c = combo;
+        for (int64_t combo = 0; combo < powl(3, (long double)n); ++combo) {
+            int64_t c = combo;
             for (int x = 0; x < n; ++x) {
                 ops[x] = OPS[c % 3];
                 c /= 3;

@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include <iostream>
 #include <string>
 #include <regex>
@@ -16,7 +17,7 @@ struct Game {
     Point2 prize;
 };
 
-static const Point2 PRIZE2_OFFSET({ 10000000000000i64 , 10000000000000i64 });
+static const Point2 PRIZE2_OFFSET({ 10000000000000LL , 10000000000000LL });
 
 int main()
 {
@@ -41,12 +42,12 @@ int main()
         games.push_back(g);
     }
 
-    __int64 part1 = 0;
-    __int64 part2 = 0;
+    int64_t part1 = 0;
+    int64_t part2 = 0;
 
     for (const Game& g : games) {
-        __int64 a = (g.b[1] * g.prize[0] - g.b[0] * g.prize[1]) / (g.a[0] * g.b[1] - g.a[1] * g.b[0]);
-        __int64 b = (g.a[0] * g.prize[1] - g.a[1] * g.prize[0]) / (g.a[0] * g.b[1] - g.a[1] * g.b[0]);
+        int64_t a = (g.b[1] * g.prize[0] - g.b[0] * g.prize[1]) / (g.a[0] * g.b[1] - g.a[1] * g.b[0]);
+        int64_t b = (g.a[0] * g.prize[1] - g.a[1] * g.prize[0]) / (g.a[0] * g.b[1] - g.a[1] * g.b[0]);
 
         if (g.a * a + g.b * b == g.prize) {
 

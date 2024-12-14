@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include <iostream>
 #include <string>
 #include <regex>
@@ -5,6 +6,7 @@
 #include <map>
 #include <numeric>
 #include <chrono>
+#include <cmath>
 #include "../shared/Split.h"
 
 using namespace std;
@@ -16,22 +18,22 @@ int main()
     auto time_start = std::chrono::high_resolution_clock::now();
 
     // Order is irrelevant, so just count how many of each stone
-    map<__int64, __int64> nums;
+    map<int64_t, int64_t> nums;
     while (!cin.eof()) {
-        __int64 i;
+        int64_t i;
         cin >> i;
         ++nums[i];
     }
 
-    __int64 part1;
+    int64_t part1;
     for (int blink = 0; blink < 75; ++blink) {
 
         if (blink == 25) {
-            part1 = accumulate(nums.begin(), nums.end(), 0i64, [](__int64 i, const auto& x) {return i + x.second; });
+            part1 = accumulate(nums.begin(), nums.end(), 0LL, [](int64_t i, const auto& x) {return i + x.second; });
         }
 
         // The next iteration.  Build it up by the rules
-        map<__int64, __int64> newnums;
+        map<int64_t, int64_t> newnums;
         for (auto& e : nums) {
             if (e.first == 0) {
                 newnums[1] = e.second;
@@ -40,8 +42,8 @@ int main()
                 int digits = (int)log10(e.first) + 1;
                 if ((digits & 1) == 0) {
                     string s = to_string(e.first);
-                    __int64 i1 = stoll(s.substr(0, digits / 2));
-                    __int64 i2 = stoll(s.substr(digits / 2));
+                    int64_t i1 = stoll(s.substr(0, digits / 2));
+                    int64_t i2 = stoll(s.substr(digits / 2));
                     newnums[i1] += e.second;
                     newnums[i2] += e.second;
                 }
@@ -53,7 +55,7 @@ int main()
         newnums.swap(nums);
     }
 
-    __int64 part2 = accumulate(nums.begin(), nums.end(), 0i64, [](__int64 i, const auto& x) {return i + x.second; });
+    int64_t part2 = accumulate(nums.begin(), nums.end(), 0LL, [](int64_t i, const auto& x) {return i + x.second; });
 
     auto time_finish = std::chrono::high_resolution_clock::now();
 

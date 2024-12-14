@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include <iostream>
 #include <string>
 #include <regex>
@@ -73,8 +74,8 @@ int main()
         ++epos;
     }
 
-    __int64 part1 = 0;
-    for (__int64 ii = 0; disk[ii] != -1; ++ii) {
+    int64_t part1 = 0;
+    for (int64_t ii = 0; disk[ii] != -1; ++ii) {
         part1 = part1 + (ii * disk[ii]);
     }
 
@@ -123,9 +124,9 @@ int main()
         }
     }
 
-    __int64 part2 = 0;
+    int64_t part2 = 0;
     for (const auto& e : filemap) {
-        for (__int64 ii = 0; ii < e.second.size; ++ii) {
+        for (int64_t ii = 0; ii < e.second.size; ++ii) {
             part2 += (ii + e.second.pos) * e.first;
         }
     }
