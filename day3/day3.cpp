@@ -2,7 +2,11 @@
 #include <iostream>
 #include <string>
 #include <regex>
-#include <conio.h>
+#ifdef _WIN32
+  #include <conio.h>
+#else
+static inline void getch() {}
+#endif
 
 using namespace std;
 
