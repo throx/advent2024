@@ -20,8 +20,8 @@ public:
     bool operator <(const Point& other) const
     { 
         for (int i = 0; i < N; ++i) {
-            if (at(i) < at(i)) return true;
-            if (at(i) > at(i)) return false;
+            if (at(i) < other.at(i)) return true;
+            if (at(i) > other.at(i)) return false;
         }
         return false;
     }
