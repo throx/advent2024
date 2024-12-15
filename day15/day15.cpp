@@ -116,6 +116,8 @@ bool try_move(set<Point2>& boxes, const set<Point2>& walls, const Point2& where,
             return false;
         }
     }
+
+    throw "BOOM";
 }
 
 int main()
