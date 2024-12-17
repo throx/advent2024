@@ -108,6 +108,7 @@ public:
 
 		//dump();
 		//std::cout << std::endl;
+		return true;
 	}
 
 	int64_t combo(int64_t operand)
