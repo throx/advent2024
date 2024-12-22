@@ -154,6 +154,16 @@ int64_t Dist(const Point<N>& p1, const Point<N>& p2) {
     return sum;
 }
 
+// Dot product
+template<int N>
+int64_t Dot(const Point<N>& p1, const Point<N>& p2) {
+    int64_t sum = 0;
+    for (int i = 0; i < N; ++i) {
+        sum += p1[i] * p2[i];
+    }
+    return sum;
+}
+
 // Do something for every point on a line.  incl_end indicates whether to call for end point or not
 template<int N, class _F>
 void DoLine(const Point<N>& p1, const Point<N>& p2, _F fn, bool incl_end = true) {
@@ -185,6 +195,7 @@ typedef Point<4> Point4;
 
 namespace P2
 {
+    static const Point2 ZERO;
     static const Point2 N({ 0, -1 });
     static const Point2 S({ 0, 1 });
     static const Point2 W({ -1, 0 });
@@ -240,6 +251,7 @@ namespace P2
 
 namespace P3
 {
+    static const Point3 ZERO;
     static const Point3 X({ 1, 0, 0 });
     static const Point3 Y({ 0, 1, 0 });
     static const Point3 Z({ 0, 0, 1 });
